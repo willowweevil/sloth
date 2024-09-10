@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.12.1] - 2024-09-10
+### Fixed
+- `CI` do not run **rolling-release-images** job on tags.
+- `scripts/build/bin/build-raw.sh` add **-buildvcs=false** flag (`Use -buildvcs=false to always omit version control information`).
+
 ## [0.12.0] - 2024-09-09
 **WARNING!**
 `integration-test-k8s` CI job is disabled because tests don't pass and I've failed to realise why it is so. We don't use Kubernetes related stuff for the time being, so I'm going to address this later in next releases.
