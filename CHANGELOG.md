@@ -1,6 +1,27 @@
 # Changelog
+All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [0.12.0] - 2024-09-09
+**WARNING!**
+`integration-test-k8s` CI job is disabled because tests don't pass and I've failed to realise why it is so. We don't use Kubernetes related stuff for the time being, so I'm going to address this later in next releases.
+
+### Regression
+- Probably generation from [Kebernetes spec](https://sloth.dev/specs/kubernetes/) won't work as expected.
+
+### Fixed
+- Recording rules generation after labels changes. Fix was cherry-picked from [kolonialno/sloth](https://github.com/kolonialno/sloth) fork.
+
+### Added
+- Support of prometheus expressions validation using [metricsql](https://github.com/VictoriaMetrics/metricsql) from VictoriaMetrics.
+
+### Changed
+- Update to **Go 1.23**.
+- `docker/dev/Dockerfile` Update **golangci** to **1.60.3**, **mokery** to **2.45.0**, **gomarkdoc** to **1.1.0**.
+- Retarget URLs and imports from [slok/sloth](https://github.com/slok/sloth/tree/main) to [ostrovok-tech/sloth](https://github.com/ostrovok-tech/sloth) repository.
+- `CI` actions updated, docker build version changed.
 
 ## [v0.11.0] - 2022-10-22
 
@@ -161,17 +182,3 @@
 - Support events based SLI.
 - Support raw query based SLI.
 - Kubernetes (prometheus-operator) CRD generation support.
-
-[unreleased]: https://github.com/slok/sloth/compare/v0.11.0...HEAD
-[v0.11.0]: https://github.com/slok/sloth/compare/v0.10.0...v0.11.0
-[v0.10.0]: https://github.com/slok/sloth/compare/v0.9.0...v0.10.0
-[v0.9.0]: https://github.com/slok/sloth/compare/v0.8.0...v0.9.0
-[v0.8.0]: https://github.com/slok/sloth/compare/v0.7.0...v0.8.0
-[v0.7.0]: https://github.com/slok/sloth/compare/v0.6.0...v0.7.0
-[v0.6.0]: https://github.com/slok/sloth/compare/v0.5.0...v0.6.0
-[v0.5.0]: https://github.com/slok/sloth/compare/v0.4.0...v0.5.0
-[v0.4.0]: https://github.com/slok/sloth/compare/v0.3.1...v0.4.0
-[v0.3.1]: https://github.com/slok/sloth/compare/v0.3.0...v0.3.1
-[v0.3.0]: https://github.com/slok/sloth/compare/v0.2.0...v0.3.0
-[v0.2.0]: https://github.com/slok/sloth/compare/v0.1.0...v0.2.0
-[v0.1.0]: https://github.com/slok/sloth/releases/tag/v0.1.0

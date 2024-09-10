@@ -6,7 +6,7 @@ import (
 
 	"gopkg.in/alecthomas/kingpin.v2"
 
-	"github.com/slok/sloth/internal/info"
+	"github.com/ostrovok-tech/sloth/internal/info"
 )
 
 type versionCommand struct{}
@@ -19,8 +19,11 @@ func NewVersionCommand(app *kingpin.Application) Command {
 	return c
 }
 
-func (versionCommand) Name() string { return "version" }
-func (versionCommand) Run(ctx context.Context, config RootConfig) error {
-	fmt.Fprintf(config.Stdout, info.Version)
+func (versionCommand) Name() string {
+	return "version"
+}
+
+func (versionCommand) Run(_ context.Context, config RootConfig) error {
+	fmt.Fprintf(config.Stdout, "%s\n", info.Version)
 	return nil
 }

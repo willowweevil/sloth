@@ -9,13 +9,16 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/slok/sloth/internal/alert"
-	"github.com/slok/sloth/internal/app/generate"
-	"github.com/slok/sloth/internal/info"
-	"github.com/slok/sloth/internal/prometheus"
+	"github.com/ostrovok-tech/sloth/internal/alert"
+	"github.com/ostrovok-tech/sloth/internal/app/generate"
+	"github.com/ostrovok-tech/sloth/internal/info"
+	"github.com/ostrovok-tech/sloth/internal/prometheus"
 )
 
 func TestIntegrationAppServiceGenerate(t *testing.T) {
+	var validator prometheus.Validator
+	validator.MetricsQL = true
+
 	tests := map[string]struct {
 		req     generate.Request
 		expResp generate.Response
@@ -226,7 +229,7 @@ func TestIntegrationAppServiceGenerate(t *testing.T) {
 								},
 								{
 									Record: "slo:sli_error:ratio_rate30d",
-									Expr:   "sum_over_time(slo:sli_error:ratio_rate5m{sloth_id=\"test-id\", sloth_service=\"test-svc\", sloth_slo=\"test-name\"}[30d])\n/ ignoring (sloth_window)\ncount_over_time(slo:sli_error:ratio_rate5m{sloth_id=\"test-id\", sloth_service=\"test-svc\", sloth_slo=\"test-name\"}[30d])\n",
+									Expr:   "sum_over_time(sum(slo:sli_error:ratio_rate5m{sloth_id=\"test-id\", sloth_service=\"test-svc\", sloth_slo=\"test-name\"})[30d:])\n/\ncount_over_time(sum(slo:sli_error:ratio_rate5m{sloth_id=\"test-id\", sloth_service=\"test-svc\", sloth_slo=\"test-name\"})[30d:])\n",
 									Labels: map[string]string{
 										"test_label":    "label_1",
 										"extra_k1":      "extra_v1",
@@ -403,6 +406,7 @@ or
 
 			svc, err := generate.NewService(generate.ServiceConfig{
 				AlertGenerator: alert.NewGenerator(windowsRepo),
+				Validator:      validator,
 			})
 			require.NoError(err)
 

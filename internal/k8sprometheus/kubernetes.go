@@ -12,10 +12,10 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 
-	"github.com/slok/sloth/internal/log"
-	slothv1 "github.com/slok/sloth/pkg/kubernetes/api/sloth/v1"
-	slothclientset "github.com/slok/sloth/pkg/kubernetes/gen/clientset/versioned"
-	slothclientsetfake "github.com/slok/sloth/pkg/kubernetes/gen/clientset/versioned/fake"
+	"github.com/ostrovok-tech/sloth/internal/log"
+	slothv1 "github.com/ostrovok-tech/sloth/pkg/kubernetes/api/sloth/v1"
+	slothclientset "github.com/ostrovok-tech/sloth/pkg/kubernetes/gen/clientset/versioned"
+	slothclientsetfake "github.com/ostrovok-tech/sloth/pkg/kubernetes/gen/clientset/versioned/fake"
 )
 
 type KubernetesService struct {
@@ -112,12 +112,12 @@ func (d DryRunKubernetesService) WatchPrometheusServiceLevels(ctx context.Contex
 	return d.svc.WatchPrometheusServiceLevels(ctx, ns, opts)
 }
 
-func (d DryRunKubernetesService) EnsurePrometheusRule(ctx context.Context, pr *monitoringv1.PrometheusRule) error {
+func (d DryRunKubernetesService) EnsurePrometheusRule(_ context.Context, _ *monitoringv1.PrometheusRule) error {
 	d.logger.Infof("Dry run EnsurePrometheusRule")
 	return nil
 }
 
-func (d DryRunKubernetesService) EnsurePrometheusServiceLevelStatus(ctx context.Context, slo *slothv1.PrometheusServiceLevel, err error) error {
+func (d DryRunKubernetesService) EnsurePrometheusServiceLevelStatus(_ context.Context, _ *slothv1.PrometheusServiceLevel, _ error) error {
 	d.logger.Infof("Dry run EnsurePrometheusServiceLevelStatus")
 	return nil
 }

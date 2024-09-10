@@ -4,12 +4,21 @@
 
 # Sloth
 
-[![CI](https://github.com/slok/sloth/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/slok/sloth/actions/workflows/ci.yaml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/slok/sloth)](https://goreportcard.com/report/github.com/slok/sloth)
-[![Apache 2 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://raw.githubusercontent.com/slok/sloth/master/LICENSE)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/slok/sloth)](https://github.com/slok/sloth/releases/latest)
-![Kubernetes release](https://img.shields.io/badge/Kubernetes-v1.25-green?logo=Kubernetes&style=flat&color=326CE5&logoColor=white)
+[![Apache 2 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://raw.githubusercontent.com/ostrovok-tech/sloth/main/LICENSE)
+[![CI](https://github.com/ostrovok-tech/sloth/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/ostrovok-tech/sloth/actions/workflows/ci.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ostrovok-tech/sloth)](https://goreportcard.com/report/github.com/ostrovok-tech/sloth)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ostrovok-tech/sloth)](https://github.com/ostrovok-tech/sloth/releases/latest)
 [![OpenSLO](https://img.shields.io/badge/OpenSLO-v1alpha-green?color=4974EA&style=flat)](https://github.com/OpenSLO/OpenSLO#slo)
+<!-- ![Kubernetes release](https://img.shields.io/badge/Kubernetes-v1.25-green?logo=Kubernetes&style=flat&color=326CE5&logoColor=white) -->
+
+## Warning
+This is a fork of [slok/sloth](https://github.com/slok/sloth) that we did as the origin's development was stopped two years ago, which was postulated at [Project State issue](https://github.com/slok/sloth/issues/521).  
+
+We use **Sloth** for internal Service Level Objectives generation and we belive this is a handy tool but there are some issues to fix and features to add.
+
+We use and we test it in our environment, but please keep in mind, that something may work different at yours due to dependencies update or some other circumstances. So be careful in case you switch from stable original to this one. 
+
+You are welcome to create issues and pull requests if you want.
 
 ## Introduction
 

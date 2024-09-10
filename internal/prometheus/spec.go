@@ -8,8 +8,8 @@ import (
 
 	"gopkg.in/yaml.v2"
 
-	prometheusv1 "github.com/slok/sloth/pkg/prometheus/api/v1"
-	prometheuspluginv1 "github.com/slok/sloth/pkg/prometheus/plugin/v1"
+	prometheusv1 "github.com/ostrovok-tech/sloth/pkg/prometheus/api/v1"
+	prometheuspluginv1 "github.com/ostrovok-tech/sloth/pkg/prometheus/plugin/v1"
 )
 
 type SLIPluginRepo interface {
@@ -32,7 +32,7 @@ func NewYAMLSpecLoader(pluginsRepo SLIPluginRepo, windowPeriod time.Duration) YA
 
 var specTypeV1Regex = regexp.MustCompile(`(?m)^version: +['"]?prometheus\/v1['"]? *$`)
 
-func (y YAMLSpecLoader) IsSpecType(ctx context.Context, data []byte) bool {
+func (y YAMLSpecLoader) IsSpecType(_ context.Context, data []byte) bool {
 	return specTypeV1Regex.Match(data)
 }
 

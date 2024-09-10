@@ -15,8 +15,8 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 
-	slothclientset "github.com/slok/sloth/pkg/kubernetes/gen/clientset/versioned"
-	"github.com/slok/sloth/test/integration/testutils"
+	slothclientset "github.com/ostrovok-tech/sloth/pkg/kubernetes/gen/clientset/versioned"
+	"github.com/ostrovok-tech/sloth/test/integration/testutils"
 )
 
 type Config struct {
@@ -83,7 +83,7 @@ type KubeClients struct {
 }
 
 // NewKubernetesClients returns Kubernetes clients.
-func NewKubernetesClients(ctx context.Context, config Config) (*KubeClients, error) {
+func NewKubernetesClients(_ context.Context, config Config) (*KubeClients, error) {
 	kcfg, err := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
 		&clientcmd.ClientConfigLoadingRules{
 			ExplicitPath: config.KubeConfig,

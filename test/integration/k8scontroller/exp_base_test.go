@@ -5,7 +5,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 
-	slothv1 "github.com/slok/sloth/pkg/kubernetes/api/sloth/v1"
+	slothv1 "github.com/ostrovok-tech/sloth/pkg/kubernetes/api/sloth/v1"
 )
 
 func getBasePrometheusServiceLevel() *slothv1.PrometheusServiceLevel {
@@ -171,7 +171,7 @@ func getBasePromOpPrometheusRule(slothVersion string) *monitoringv1.PrometheusRu
 						},
 						{
 							Record: "slo:sli_error:ratio_rate30d",
-							Expr:   intstr.FromString("sum_over_time(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo01\", sloth_service=\"svc01\", sloth_slo=\"slo01\"}[30d])\n/ ignoring (sloth_window)\ncount_over_time(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo01\", sloth_service=\"svc01\", sloth_slo=\"slo01\"}[30d])\n"),
+							Expr:   intstr.FromString("sum_over_time(sum(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo01\", sloth_service=\"svc01\", sloth_slo=\"slo01\"})[30d:])\n/\ncount_over_time(sum(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo01\", sloth_service=\"svc01\", sloth_slo=\"slo01\"})[30d:])\n"),
 							Labels: map[string]string{
 								"globalk1":      "globalv1",
 								"slo01k1":       "slo01v1",
@@ -383,7 +383,7 @@ func getBasePromOpPrometheusRule(slothVersion string) *monitoringv1.PrometheusRu
 						},
 						{
 							Record: "slo:sli_error:ratio_rate30d",
-							Expr:   intstr.FromString("sum_over_time(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo02\", sloth_service=\"svc01\", sloth_slo=\"slo02\"}[30d])\n/ ignoring (sloth_window)\ncount_over_time(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo02\", sloth_service=\"svc01\", sloth_slo=\"slo02\"}[30d])\n"),
+							Expr:   intstr.FromString("sum_over_time(sum(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo02\", sloth_service=\"svc01\", sloth_slo=\"slo02\"})[30d:])\n/\ncount_over_time(sum(slo:sli_error:ratio_rate5m{sloth_id=\"svc01-slo02\", sloth_service=\"svc01\", sloth_slo=\"slo02\"})[30d:])\n"),
 							Labels: map[string]string{
 								"globalk1":      "globalv1",
 								"sloth_id":      "svc01-slo02",

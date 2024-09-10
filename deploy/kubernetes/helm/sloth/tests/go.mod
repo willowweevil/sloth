@@ -1,6 +1,6 @@
-module github.com/slok/sloth/helm
+module github.com/ostrovok-tech/sloth/helm
 
-go 1.19
+go 1.23
 
 require (
 	github.com/slok/go-helm-template v0.3.0

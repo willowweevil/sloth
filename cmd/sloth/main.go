@@ -9,10 +9,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"gopkg.in/alecthomas/kingpin.v2"
 
-	"github.com/slok/sloth/cmd/sloth/commands"
-	"github.com/slok/sloth/internal/info"
-	"github.com/slok/sloth/internal/log"
-	loglogrus "github.com/slok/sloth/internal/log/logrus"
+	"github.com/ostrovok-tech/sloth/cmd/sloth/commands"
+	"github.com/ostrovok-tech/sloth/internal/info"
+	"github.com/ostrovok-tech/sloth/internal/log"
+	loglogrus "github.com/ostrovok-tech/sloth/internal/log/logrus"
 )
 
 // Run runs the main application.

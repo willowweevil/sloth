@@ -8,10 +8,10 @@ import (
 
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/slok/sloth/internal/prometheus"
-	k8sprometheusv1 "github.com/slok/sloth/pkg/kubernetes/api/sloth/v1"
-	"github.com/slok/sloth/pkg/kubernetes/gen/clientset/versioned/scheme"
-	prometheuspluginv1 "github.com/slok/sloth/pkg/prometheus/plugin/v1"
+	"github.com/ostrovok-tech/sloth/internal/prometheus"
+	k8sprometheusv1 "github.com/ostrovok-tech/sloth/pkg/kubernetes/api/sloth/v1"
+	"github.com/ostrovok-tech/sloth/pkg/kubernetes/gen/clientset/versioned/scheme"
+	prometheuspluginv1 "github.com/ostrovok-tech/sloth/pkg/prometheus/plugin/v1"
 )
 
 type SLIPluginRepo interface {
@@ -39,7 +39,7 @@ var (
 	specTypeV1RegexAPIVersion = regexp.MustCompile(`(?m)^apiVersion: +['"]?sloth.slok.dev\/v1['"]? *$`)
 )
 
-func (y YAMLSpecLoader) IsSpecType(ctx context.Context, data []byte) bool {
+func (y YAMLSpecLoader) IsSpecType(_ context.Context, data []byte) bool {
 	return specTypeV1RegexKind.Match(data) && specTypeV1RegexAPIVersion.Match(data)
 }
 

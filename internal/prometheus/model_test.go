@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/slok/sloth/internal/prometheus"
+	"github.com/ostrovok-tech/sloth/internal/prometheus"
 )
 
 func getGoodSLOGroup() prometheus.SLOGroup {
@@ -60,6 +60,9 @@ func getGoodSLOGroup() prometheus.SLOGroup {
 }
 
 func TestModelValidationSpec(t *testing.T) {
+	var validator prometheus.Validator
+	validator.MetricsQL = true
+
 	tests := map[string]struct {
 		slo           func() prometheus.SLOGroup
 		expErrMessage string
@@ -452,7 +455,7 @@ func TestModelValidationSpec(t *testing.T) {
 			assert := assert.New(t)
 
 			slo := test.slo()
-			err := slo.Validate()
+			err := slo.Validate(validator)
 
 			if test.expErrMessage != "" {
 				assert.Error(err)
