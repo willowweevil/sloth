@@ -28,6 +28,7 @@ RUN ./scripts/build/bin/build-raw.sh
 # to obtain a resulting ${ARCH} image independently where we are building this image.
 # FROM ${ALPINE_ARCH}/alpine:3
 
+# ${ARCH} architecture define in build-image.sh
 FROM alpine:3
 
 COPY --from=build-stage /src/bin/sloth /usr/local/bin/sloth
