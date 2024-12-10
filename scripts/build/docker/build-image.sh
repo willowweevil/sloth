@@ -28,7 +28,7 @@ esac
 # Build image.
 echo "Building image ${IMAGE_TAG_ARCH}..."
 docker build \
-  --platform $ARCH
+  --platform "${ARCH}" \
 	--build-arg VERSION="${VERSION}" \
 	--build-arg ARCH="${ARCH}" \
 	--build-arg ALPINE_ARCH="${ALPINE_ARCH}" \
