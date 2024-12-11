@@ -134,15 +134,15 @@ func promRulesToKubeRules(rules []rulefmt.Rule) []monitoringv1.Rule {
 			forS = r.For.String()
 		}
 		duration := monitoringv1.Duration(forS)
-		duarionPointer := &duration
+		durationPointer := &duration
 		if duration == "" {
-			duarionPointer = nil
+			durationPointer = nil
 		}
 		res = append(res, monitoringv1.Rule{
 			Record:      r.Record,
 			Alert:       r.Alert,
 			Expr:        intstr.FromString(r.Expr),
-			For:         duarionPointer,
+			For:         durationPointer,
 			Labels:      r.Labels,
 			Annotations: r.Annotations,
 		})
