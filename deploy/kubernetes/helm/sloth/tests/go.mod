@@ -4,7 +4,7 @@ go 1.23
 
 require (
 	github.com/slok/go-helm-template v0.3.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.4
 )
 
 require (
