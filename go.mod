@@ -9,12 +9,12 @@ require (
 	github.com/oklog/run v1.1.0
 	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.78.2
 	github.com/prometheus-operator/prometheus-operator/pkg/client v0.61.1
-	github.com/prometheus/client_golang v1.19.1
+	github.com/prometheus/client_golang v1.20.2
 	github.com/prometheus/common v0.55.0
 	github.com/prometheus/prometheus v0.40.3
 	github.com/sirupsen/logrus v1.9.3
 	github.com/slok/reload v0.1.0
-	github.com/spotahome/kooper/v2 v2.2.0
+	github.com/spotahome/kooper/v2 v2.7.0
 	github.com/stretchr/testify v1.9.0
 	github.com/traefik/yaegi v0.14.3
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
@@ -60,6 +60,8 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/jpillora/backoff v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
