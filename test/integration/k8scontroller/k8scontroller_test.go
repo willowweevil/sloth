@@ -64,7 +64,6 @@ func TestKubernetesControllerPromOperatorGenerate(t *testing.T) {
 
 				// Check.
 				expRule := getBasePromOpPrometheusRule(version)
-				fmt.Println(expRule)
 				expRule.Namespace = ns
 
 				gotRule, err := kubeClis.Monitoring.MonitoringV1().PrometheusRules(ns).Get(ctx, expRule.Name, metav1.GetOptions{})
@@ -88,7 +87,6 @@ func TestKubernetesControllerPromOperatorGenerate(t *testing.T) {
 
 				// Check.
 				expRule := getBase28DayPromOpPrometheusRule(version)
-				fmt.Println(expRule)
 				expRule.Namespace = ns
 
 				gotRule, err := kubeClis.Monitoring.MonitoringV1().PrometheusRules(ns).Get(ctx, expRule.Name, metav1.GetOptions{})
@@ -112,7 +110,6 @@ func TestKubernetesControllerPromOperatorGenerate(t *testing.T) {
 
 				// Check.
 				expRule := getPluginPromOpPrometheusRule(version)
-				fmt.Println(expRule)
 				expRule.Namespace = ns
 
 				gotRule, err := kubeClis.Monitoring.MonitoringV1().PrometheusRules(ns).Get(ctx, expRule.Name, metav1.GetOptions{})
