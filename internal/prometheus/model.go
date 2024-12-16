@@ -2,7 +2,6 @@ package prometheus
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"reflect"
 	"regexp"
@@ -69,9 +68,11 @@ func (s SLOGroup) Validate(validator Validator) error {
 		return modelSpecValidatePromQL.Struct(s)
 	} else if validator.MetricsQL {
 		return modelSpecValidateMetricsQL.Struct(s)
+	} else {
+		return modelSpecValidate.Struct(s)
 	}
 
-	return errors.New("no validator set for SLOGroup")
+	//return errors.New("no validator set for SLOGroup")
 }
 
 // GetSLIErrorMetric returns the SLI error metric.
@@ -88,6 +89,23 @@ func (s SLO) GetSLOIDPromLabels() map[string]string {
 		sloServiceLabelName: s.Service,
 	}
 }
+
+var modelSpecValidate = func() *validator.Validate {
+	v := validator.New()
+
+	// More information on prometheus validators logic: https://github.com/prometheus/prometheus/blob/df80dc4d3970121f2f76cba79050983ffb3cdbb0/pkg/rulefmt/rulefmt.go#L188-L208
+	mustRegisterValidation(v, "prom_expr", validatePromExpression)
+	mustRegisterValidation(v, "prom_label_key", validatePromLabelKey)
+	mustRegisterValidation(v, "prom_label_value", validatePromLabelValue)
+	mustRegisterValidation(v, "prom_annot_key", validatePromAnnotKey)
+	mustRegisterValidation(v, "name", validateName)
+	mustRegisterValidation(v, "required_if_enabled", validateRequiredEnabledAlertName)
+	mustRegisterValidation(v, "template_vars", validateTemplateVars)
+	v.RegisterStructValidation(validateOneSLI, SLI{})
+	v.RegisterStructValidation(validateSLOGroup, SLOGroup{})
+	v.RegisterStructValidation(validateSLIEvents, SLIEvents{})
+	return v
+}()
 
 var modelSpecValidatePromQL = func() *validator.Validate {
 	v := validator.New()
@@ -166,6 +184,30 @@ func validatePromLabelValue(fl validator.FieldLevel) bool {
 
 var promExprTplAllowedFakeData = map[string]string{
 	"window": "1m",
+}
+
+func validatePromExpression(fl validator.FieldLevel) bool {
+	expr, ok := fl.Field().Interface().(string)
+	if !ok {
+		return false
+	}
+
+	// The expressions set by users can have some allowed templated data
+	// we are rendering the expression with fake data so prometheus can
+	// have a final expr and check if is correct.
+	tpl, err := template.New("expr").Parse(expr)
+	if err != nil {
+		return false
+	}
+
+	var tplB bytes.Buffer
+	err = tpl.Execute(&tplB, promExprTplAllowedFakeData)
+	if err != nil {
+		return false
+	}
+
+	_, err = promqlparser.ParseExpr(tplB.String())
+	return err == nil
 }
 
 // validatePromQLExpression implements validator.CustomTypeFunc by validating
