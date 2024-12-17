@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.13.1] - 2024-12-16
 ### Changed
 - Update dependencies versions a bit further.
+
 ### Fixed
 - `ci-integration-k8s` stage tests fail
 
