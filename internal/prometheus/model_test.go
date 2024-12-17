@@ -1,6 +1,7 @@
 package prometheus_test
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -61,7 +62,6 @@ func getGoodSLOGroup() prometheus.SLOGroup {
 
 func TestModelValidationSpec(t *testing.T) {
 	var validator prometheus.Validator
-	validator.MetricsQL = true
 
 	tests := map[string]struct {
 		slo           func() prometheus.SLOGroup
@@ -450,8 +450,28 @@ func TestModelValidationSpec(t *testing.T) {
 		},
 	}
 
+	validator.PromQL = false
+	validator.MetricsQL = true
 	for name, test := range tests {
-		t.Run(name, func(t *testing.T) {
+		t.Run(fmt.Sprintf("[MetricsQL] %s", name), func(t *testing.T) {
+			assert := assert.New(t)
+
+			slo := test.slo()
+			err := slo.Validate(validator)
+
+			if test.expErrMessage != "" {
+				assert.Error(err)
+				assert.Equal(test.expErrMessage, err.Error())
+			} else {
+				assert.NoError(err)
+			}
+		})
+	}
+
+	validator.PromQL = true
+	validator.MetricsQL = false
+	for name, test := range tests {
+		t.Run(fmt.Sprintf("[PromQL] %s", name), func(t *testing.T) {
 			assert := assert.New(t)
 
 			slo := test.slo()
