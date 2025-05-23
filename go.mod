@@ -1,6 +1,6 @@
 module github.com/ostrovok-tech/sloth
 
-go 1.24.2
+go 1.24.1
 
 require (
 	github.com/OpenSLO/oslo v0.12.0
